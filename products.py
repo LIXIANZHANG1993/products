@@ -1,12 +1,18 @@
-# 讀取檔案
+import os #operating system 
+
+#讀取檔案
 products = []
-with open('products.csv', 'r') as f:
-    for line in f:
-        if '商品,價格' in line:
-            continue  #跳到下一回
-        name, price= line.strip().split(',')
-        products.append([name, price])
-print(products)
+if os.path.isfile('products.csv'): #檢查檔案在不在
+    print('歷史紀錄檔已讀取')
+    with open('products.csv', 'r') as f: # encoding= 'utf-8'
+        for line in f:
+            if '商品,價格' in line:
+                continue  #跳到下一回
+            name, price= line.strip().split(',')
+            products.append([name, price])
+    print(products)
+else:
+    print('搜尋不到歷史紀錄檔')
 
 # 讓使用者輸入
 while True:
